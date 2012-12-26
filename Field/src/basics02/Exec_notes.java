@@ -38,13 +38,16 @@ public class Exec_notes {
 		if(Mouse.isButtonDown(0)){
 			System.out.printf("LeftClick ON @(%d,%d)\n",x,y);
 		}
-		
+
 		while(Keyboard.next()){
-			if(Keyboard.getEventKeyState()){
+			//getEventKeyState()は、ボタンが押されたらtrue,離したらfalseを返す
+			if(Keyboard.getEventKeyState()){	//とあるキーが押された時
+				//もしそのキーがAであったら
 				if(Keyboard.getEventKey() == Keyboard.KEY_A){
 					System.out.println("A Key Pressed");
 				}
-			}else{
+			}else{								//とあるキーが離れた時
+				//もしそのキーがAであったら
 				if(Keyboard.getEventKey() == Keyboard.KEY_A){
 					System.out.println("A Key Released");
 				}
