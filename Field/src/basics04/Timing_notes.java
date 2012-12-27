@@ -41,10 +41,11 @@ public class Timing_notes {
 
 			update(delta);
 			renderGL();
-			
+
 			Display.update();
 			Display.sync(60);	//fpsを60に固定
 		}
+		Display.destroy();
 	}
 
 	//
@@ -54,7 +55,7 @@ public class Timing_notes {
 		 * 速さと思って良い。
 		 */
 		//四角形の回転
-		rotation += 0.15f * delta;
+		rotation += 0.1f * delta;
 		//キーボードで四角形の移動ができるようにする
 		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT))	x -= 0.35f * delta;
 		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT))	x += 0.35f * delta;
@@ -101,21 +102,21 @@ public class Timing_notes {
 		glOrtho(0,800,0,600,1,-1);
 		glMatrixMode(GL_MODELVIEW);
 	}
-	
+
 	//描画
 	public void renderGL(){
 		//スクリーンのクリア
 		glClear(GL_COLOR_BUFFER_BIT);
 		//色指定
 		glColor3f(1.0f,0.3f,0.6f);
-		
+
 		//四角形の描画
 		glPushMatrix();
 			//座標系の平行移動
 			glTranslatef(x,y,0);			//座標の原点がキー入力に追随する
 			glRotatef(rotation,0f,0f,1f);	//Z軸を中心にrotation度だけ回転させる
 			glTranslatef(-x,-y,0);
-			
+
 			//頂点の指定
 			glBegin(GL_QUADS);
 				glVertex2f(x-20,y-20);
@@ -123,10 +124,10 @@ public class Timing_notes {
 				glVertex2f(x+20,y+20);
 				glVertex2d(x-20,y+20);
 			glEnd();
-				
+
 		glPopMatrix();
 	}
-	
+
 	//実行
 	public static void main (String[] args){
 		new Timing_notes().start();
