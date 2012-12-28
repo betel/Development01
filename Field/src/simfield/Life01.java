@@ -26,13 +26,15 @@ public class Life01 {
 				GL11.glVertex2f(x-10, y+10);
 			GL11.glEnd();
 		GL11.glPopMatrix();
+		
+		
 	}
 	//ライフの向かう方向（1,2,3,4の4方向。0は移動しない）
 	public int getDirection(){
 		return (int)(5*Math.random());
 	}
 	//移動（Baseクラスからデルタ時間を取得）
-	public void updateLife(int delta, int width, int height){
+	public void updateLife(int delta){
 		int d = getDirection();
 
 		if(d==0) return;
@@ -42,8 +44,8 @@ public class Life01 {
 		if(d==4) y -= 0.35f*delta;
 
 		if(x<0) x=0;
-		if(x>width)  x=width;
+		if(x>Base.width)  x=Base.width;
 		if(y<0) y=0;
-		if(y>height) y=height;
+		if(y>Base.height) y=Base.height;
 	}
 }
