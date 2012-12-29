@@ -52,7 +52,7 @@ public class Base {
 		if((getTime()-lastTime) > freq){
 			life.updateLife(delta);
 			life.render();
-			lastTime += freq;	//speed秒経過したことを記録する
+			lastTime += freq;	//freq秒経過したことを記録する
 		}
 	}
 	//正確な時刻を得る
