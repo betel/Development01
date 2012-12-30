@@ -32,11 +32,13 @@ public class Base {
 		getDelta();
 		lastTime = getTime();
 		Life life1 = new Life(x,y);	//ライフの配置
+		Life life2 = new Life(x+100,y+100);
 
 		//メインループ
 		while(!Display.isCloseRequested()){
 
 			renderLife(life1);
+			renderLife(life2);
 
 			Display.update();	//オンスクリーンに反映
 			Display.sync(60);	//FPSを60に固定
