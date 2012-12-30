@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 public class Life01 {
 
 	private float x,y;
-	private float velocity = 0.05f;
+	private float velocity = 0.03f;
 	int direction;
 
 	//コンストラクタ

@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL11;
 
 public class Base {
 
-	static int freq		=	100;	//更新頻度(ミリ秒)
+	static int freq		=	200;	//更新頻度(ミリ秒)
 	static int width	=	800;	//ウィンドウのサイズ
 	static int height	=	600;
 	private float x		=	400;	//オブジェクトの初期位置
@@ -32,13 +32,11 @@ public class Base {
 		getDelta();
 		lastTime = getTime();
 		Life01 life1 = new Life01(x,y);	//ライフの配置
-		Life01 life2 = new Life02(x+50,y);
 
 		//メインループ
 		while(!Display.isCloseRequested()){
 
 			renderLife(life1);
-			renderLife(life2);
 
 			Display.update();	//オンスクリーンに反映
 			Display.sync(60);	//FPSを60に固定
@@ -50,10 +48,11 @@ public class Base {
 		int delta = getDelta();
 
 		if((getTime()-lastTime) > freq){
-			life.updateLife(delta);
-			life.render();
+			life.judgeDirection();
 			lastTime += freq;	//freq秒経過したことを記録する
 		}
+		life.updateLife(delta);
+		life.render();
 	}
 	//正確な時刻を得る
 	public long getTime(){
