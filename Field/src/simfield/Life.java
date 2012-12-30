@@ -2,14 +2,14 @@ package simfield;
 
 import org.lwjgl.opengl.GL11;
 
-public class Life01 {
+public class Life {
 
 	private float x,y;
 	private float velocity = 0.03f;
 	int direction;
 
 	//コンストラクタ
-	public Life01(float x, float y){
+	public Life(float x, float y){
 		this.x = x;
 		this.y = y;
 	}

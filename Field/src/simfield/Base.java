@@ -31,7 +31,7 @@ public class Base {
 		initGL();
 		getDelta();
 		lastTime = getTime();
-		Life01 life1 = new Life01(x,y);	//ライフの配置
+		Life life1 = new Life(x,y);	//ライフの配置
 
 		//メインループ
 		while(!Display.isCloseRequested()){
@@ -44,7 +44,7 @@ public class Base {
 	}
 
 	//描画処理
-	void renderLife(Life01 life){
+	void renderLife(Life life){
 		int delta = getDelta();
 
 		if((getTime()-lastTime) > FREQ){
