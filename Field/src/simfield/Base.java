@@ -8,10 +8,10 @@ import org.lwjgl.opengl.GL11;
 
 public class Base {
 
-	static int freq		=	200;	//更新頻度(ミリ秒)
-	static int width	=	800;	//ウィンドウのサイズ
-	static int height	=	600;
-	private float x		=	400;	//オブジェクトの初期位置
+	static final int FREQ	=	200;	//更新頻度(ミリ秒)
+	static final int WIDTH	=	800;	//ウィンドウのサイズ
+	static final int HEIGHT	=	600;
+	private float x		=	400;		//オブジェクトの初期位置
 	private float y		=	300;
 	private long lastFrameTime;
 	private long lastTime;
@@ -19,7 +19,7 @@ public class Base {
 	public void start(){
 		//ウィンドウの生成
 		try{
-			Display.setDisplayMode(new DisplayMode(width,height));
+			Display.setDisplayMode(new DisplayMode(WIDTH,HEIGHT));
 			Display.setTitle("SimField");
 			Display.create();
 		}catch(LWJGLException e){
@@ -47,9 +47,9 @@ public class Base {
 	void renderLife(Life01 life){
 		int delta = getDelta();
 
-		if((getTime()-lastTime) > freq){
+		if((getTime()-lastTime) > FREQ){
 			life.judgeDirection();
-			lastTime += freq;	//freq秒経過したことを記録する
+			lastTime += FREQ;	//freq秒経過したことを記録する
 		}
 		life.updateLife(delta);
 		life.render();
