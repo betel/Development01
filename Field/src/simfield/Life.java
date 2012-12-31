@@ -5,9 +5,9 @@ import org.lwjgl.opengl.GL11;
 
 public class Life {
 
-	static final int FREQ = 200;
+	static final int FREQ = 150;
 	public float	x,y;
-	private float	velocity = 0.03f;
+	private float	velocity = 0.05f;
 	private int		direction;
 	private long	lastFrameTime;
 	private long	lastTime;
@@ -23,31 +23,42 @@ public class Life {
 	//メソッド
 	//描画
 	public void render(){
-		
-		GL11.glColor3f(0.1f, 0.8f, 0.1f);
 
+		setLifeColor(0.1f, 0.8f, 0.1f);
+
+		int side = 10/2;
 		//GL11.glPushMatrix();
 			GL11.glBegin(GL11.GL_QUADS);
-				GL11.glVertex2f(x-10, y-10);
-				GL11.glVertex2f(x+10, y-10);
-				GL11.glVertex2f(x+10, y+10);
-				GL11.glVertex2f(x-10, y+10);
+				GL11.glVertex2f(x-side, y-side);
+				GL11.glVertex2f(x+side, y-side);
+				GL11.glVertex2f(x+side, y+side);
+				GL11.glVertex2f(x-side, y+side);
 			GL11.glEnd();
 		//GL11.glPopMatrix();
 
 	}
-	//ライフの向かう方向（1,2,3,4の4方向。0は移動しない）
+	//ライフの色を決める
+	public void setLifeColor(float red,float green,float blue){
+		GL11.glColor3f(red, green, blue);
+	}
+	//ライフの向かう方向（1,2,3,4,5,6,7,8の8方向。0,9-14は移動しない）
 	public void judgeDirection(){
-		direction = (int)(5*Math.random());
+		direction = (int)(15*Math.random());
 	}
 	//移動（Baseクラスからデルタ時間を取得）
 	public void updateLife(int delta){
 
-		if(direction==0) return;
-		if(direction==1) x -= velocity*delta;
-		if(direction==2) y += velocity*delta;
-		if(direction==3) x += velocity*delta;
-		if(direction==4) y -= velocity*delta;
+		if(direction==0||direction==9||direction==10
+				||direction==11||direction==12||direction==13
+				||direction==14) return;
+		if(direction==1){ x -= velocity*delta; }
+		if(direction==2){ x -= velocity*delta; y += velocity*delta; }
+		if(direction==3){ y += velocity*delta; }
+		if(direction==4){ x += velocity*delta; y += velocity*delta; }
+		if(direction==5){ x += velocity*delta; }
+		if(direction==6){ x += velocity*delta; y -= velocity*delta; }
+		if(direction==7){ y -= velocity*delta; }
+		if(direction==8){ x -= velocity*delta; y -= velocity*delta; }
 
 		//移動範囲の制限
 		if(x<0) x=0;
