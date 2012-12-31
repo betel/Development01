@@ -12,8 +12,7 @@ public class Life {
 	private long	lastFrameTime;
 	private long	lastTime;
 
-	//コンストラクタ
-	public Life(float x, float y){
+	public Life(float x, float y){	//コンストラクタ
 		this.x = x;
 		this.y = y;
 		getDelta();
@@ -24,7 +23,7 @@ public class Life {
 	//描画
 	public void render(){
 
-		setLifeColor(0.1f, 0.8f, 0.1f);
+		setLifeColor();
 
 		int side = 10/2;
 		//GL11.glPushMatrix();
@@ -38,8 +37,8 @@ public class Life {
 
 	}
 	//ライフの色を決める
-	public void setLifeColor(float red,float green,float blue){
-		GL11.glColor3f(red, green, blue);
+	public void setLifeColor(){
+		GL11.glColor3f(0.1f, 0.8f, 0.1f);
 	}
 	//ライフの向かう方向（1,2,3,4,5,6,7,8の8方向。0,9-14は移動しない）
 	public void judgeDirection(){

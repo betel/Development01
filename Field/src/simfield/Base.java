@@ -12,17 +12,18 @@ public class Base {
 
 	static final int WIDTH	=	800;	//ウィンドウのサイズ
 	static final int HEIGHT	=	600;
-	private int		numberOfLife = 20;
+	private int		numberOfLife	= 20;
+	private int 	numberOfRed		= 5;
 	private float	x		=	400;		//オブジェクトの初期位置
 	private float	y		=	300;
 	private long 	lastFrameTime;
-	private ArrayList<Life> life;
+	private ArrayList<Life> life,lifeRed;
 
-	//コンストラクタ
-	public Base(){
+	public Base(){	//コンストラクタ
 		getDelta();
 		life = new ArrayList<Life>();
-		createLifeSet(numberOfLife);
+		lifeRed = new ArrayList<Life>();
+		createLifeSet(numberOfLife,numberOfRed);
 	}
 
 	public void start(){
@@ -44,6 +45,9 @@ public class Base {
 
 			for(Life l : life){
 				l.renderLife();
+			}
+			for(Life lr : lifeRed){
+				lr.renderLife();
 			}
 
 			Display.update();	//オンスクリーンに反映
@@ -70,10 +74,14 @@ public class Base {
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	}
 	//指定された個数分だけライフを生成してArrayListに追加
-	public void createLifeSet(int numberOfLife){
-		int n = numberOfLife;
-		for(int i=0; i<n; i++){
+	public void createLifeSet(int numberOfLife,int numberOfRed){
+		int m = numberOfLife;
+		int n = numberOfRed;
+		for(int i=0; i<m; i++){
 			life.add(new Life(x,y));
+		}
+		for(int i=0; i<n; i++){
+			lifeRed.add(new LifeRed(x,y));
 		}
 	}
 }
