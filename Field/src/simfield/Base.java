@@ -3,7 +3,6 @@ package simfield;
 import java.util.ArrayList;
 
 import org.lwjgl.LWJGLException;
-import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
@@ -16,11 +15,9 @@ public class Base {
 	private int 	numberOfRed		= 5;
 	private float	x		=	400;		//オブジェクトの初期位置
 	private float	y		=	300;
-	private long 	lastFrameTime;
 	private ArrayList<Life> life,lifeRed;
 
 	public Base(){	//コンストラクタ
-		getDelta();
 		life = new ArrayList<Life>();
 		lifeRed = new ArrayList<Life>();
 		createLifeSet(numberOfLife,numberOfRed);
@@ -53,18 +50,6 @@ public class Base {
 			Display.update();	//オンスクリーンに反映
 			Display.sync(60);	//FPSを60に固定
 		}
-	}
-	//正確な時刻を得る
-	public long getTime(){
-		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
-	}
-	//デルタ時間を得る
-	public int getDelta(){
-		long	time	=	getTime();
-		int		delta	=	(int)(time - lastFrameTime);
-		lastFrameTime	=	time;
-
-		return delta;
 	}
 	//OpenGLの初期化
 	void initGL(){
