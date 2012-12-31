@@ -10,56 +10,51 @@ import org.lwjgl.opengl.GL11;
 
 public class Base {
 
-	static final int FREQ	=	200;	//更新頻度(ミリ秒)
 	static final int WIDTH	=	800;	//ウィンドウのサイズ
 	static final int HEIGHT	=	600;
 	private float x		=	400;		//オブジェクトの初期位置
 	private float y		=	300;
 	private long lastFrameTime;
-	private long lastTime;
 	private ArrayList<Life> life;
+
 	//コンストラクタ
 	public Base(){
-		initGL();
 		getDelta();
-		lastTime = getTime();
+		life = new ArrayList<Life>();
+
 	}
+
+	/**
+	public void createLifeSet(){
+		for(int i=0; i<)
+	}
+	**/
 	public void start(){
 		//ウィンドウの生成
 		try{
 			Display.setDisplayMode(new DisplayMode(WIDTH,HEIGHT));
-			Display.setTitle("SimField");
+			//Display.setTitle("SimField");
 			Display.create();
 		}catch(LWJGLException e){
 			e.printStackTrace();
 			System.exit(0);
 		}
-
-		/**
+		initGL();
+		//fortest
 		Life life1 = new Life(x,y);	//ライフの配置
 		Life life2 = new Life(x+100,y+100);
-		*/
+
 		//メインループ
 		while(!Display.isCloseRequested()){
+			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
-			renderLife(life1);
-			renderLife(life2);
-
+			life1.renderLife();
+			life2.renderLife();
+			//forTest
+			Display.setTitle("l1-x=" + (int)life1.x + ",\t l1y=" + (int)life1.y);
 			Display.update();	//オンスクリーンに反映
 			Display.sync(60);	//FPSを60に固定
 		}
-	}
-
-	//描画処理
-	void renderLife(Life life){
-		int delta = getDelta();
-
-		if((getTime()-lastTime) > FREQ){
-			life.judgeDirection();
-			lastTime += FREQ;	//freq秒経過したことを記録する
-		}
-		life.updateLife(delta);
-		life.render();
 	}
 	//正確な時刻を得る
 	public long getTime(){
