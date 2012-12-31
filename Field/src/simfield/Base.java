@@ -1,5 +1,7 @@
 package simfield;
 
+import java.util.ArrayList;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
@@ -15,6 +17,7 @@ public class Base {
 	private float y		=	300;
 	private long lastFrameTime;
 	private long lastTime;
+	private ArrayList<Life> life;
 
 	public void start(){
 		//ウィンドウの生成
@@ -31,9 +34,12 @@ public class Base {
 		initGL();
 		getDelta();
 		lastTime = getTime();
+		
+		
+		/**
 		Life life1 = new Life(x,y);	//ライフの配置
 		Life life2 = new Life(x+100,y+100);
-
+		*/
 		//メインループ
 		while(!Display.isCloseRequested()){
 
