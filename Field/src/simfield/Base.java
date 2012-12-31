@@ -12,23 +12,19 @@ public class Base {
 
 	static final int WIDTH	=	800;	//ウィンドウのサイズ
 	static final int HEIGHT	=	600;
-	private float x		=	400;		//オブジェクトの初期位置
-	private float y		=	300;
-	private long lastFrameTime;
+	private int		numberOfLife = 100;
+	private float	x		=	400;		//オブジェクトの初期位置
+	private float	y		=	300;
+	private long 	lastFrameTime;
 	private ArrayList<Life> life;
 
 	//コンストラクタ
 	public Base(){
 		getDelta();
 		life = new ArrayList<Life>();
-
+		createLifeSet(numberOfLife);
 	}
 
-	/**
-	public void createLifeSet(){
-		for(int i=0; i<)
-	}
-	**/
 	public void start(){
 		//ウィンドウの生成
 		try{
@@ -39,19 +35,17 @@ public class Base {
 			e.printStackTrace();
 			System.exit(0);
 		}
+		
 		initGL();
-		//fortest
-		Life life1 = new Life(x,y);	//ライフの配置
-		Life life2 = new Life(x+100,y+100);
 
 		//メインループ
 		while(!Display.isCloseRequested()){
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
-			life1.renderLife();
-			life2.renderLife();
-			//forTest
-			Display.setTitle("l1-x=" + (int)life1.x + ",\t l1y=" + (int)life1.y);
+			for(Life l : life){
+				l.renderLife();
+			}
+
 			Display.update();	//オンスクリーンに反映
 			Display.sync(60);	//FPSを60に固定
 		}
@@ -74,5 +68,12 @@ public class Base {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, 800, 0, 600, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+	}
+	//指定された個数分だけライフを生成してArrayListに追加
+	public void createLifeSet(int numberOfLife){
+		int n = numberOfLife;
+		for(int i=0; i<n; i++){
+			life.add(new Life(x,y));
+		}
 	}
 }
