@@ -18,7 +18,12 @@ public class Base {
 	private long lastFrameTime;
 	private long lastTime;
 	private ArrayList<Life> life;
-
+	//コンストラクタ
+	public Base(){
+		initGL();
+		getDelta();
+		lastTime = getTime();
+	}
 	public void start(){
 		//ウィンドウの生成
 		try{
@@ -30,12 +35,6 @@ public class Base {
 			System.exit(0);
 		}
 
-		//初期化
-		initGL();
-		getDelta();
-		lastTime = getTime();
-		
-		
 		/**
 		Life life1 = new Life(x,y);	//ライフの配置
 		Life life2 = new Life(x+100,y+100);
