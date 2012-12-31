@@ -2,11 +2,11 @@ package simfield;
 
 import org.lwjgl.opengl.GL11;
 
-public class Life02 extends Life{
+public class LifeRed extends Life{
 
 	private float x,y;
 
-	public Life02(float x, float y){
+	public LifeRed(float x, float y){
 		super(x,y);
 		this.x = x;
 		this.y = y;

@@ -12,7 +12,7 @@ public class Base {
 
 	static final int WIDTH	=	800;	//ウィンドウのサイズ
 	static final int HEIGHT	=	600;
-	private int		numberOfLife = 100;
+	private int		numberOfLife = 500;
 	private float	x		=	400;		//オブジェクトの初期位置
 	private float	y		=	300;
 	private long 	lastFrameTime;
@@ -35,7 +35,7 @@ public class Base {
 			e.printStackTrace();
 			System.exit(0);
 		}
-		
+
 		initGL();
 
 		//メインループ
