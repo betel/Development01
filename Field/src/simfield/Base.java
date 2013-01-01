@@ -7,7 +7,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
-public class Base {
+public class Base implements Runnable{
 
 	static final int WIDTH	=	800;	//ウィンドウのサイズ
 	static final int HEIGHT	=	600;
@@ -34,7 +34,7 @@ public class Base {
 		createLifeSet(numberOfLife,numberOfRed,numberOfBlue);
 	}
 
-	public void start(){
+	public void run(){
 		//ウィンドウの生成
 		try{
 			Display.setDisplayMode(new DisplayMode(WIDTH,HEIGHT));
