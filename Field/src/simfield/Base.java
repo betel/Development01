@@ -12,14 +12,16 @@ public class Base {
 	static final int WIDTH	=	800;	//ウィンドウのサイズ
 	static final int HEIGHT	=	600;
 	private int		numberOfLife	= 20;
-	private int 	numberOfRed		= 5;
+	private int 	numberOfRed		= 10;
+	private int		numberOfBlue	= 3;
 	private float	x		=	400;		//オブジェクトの初期位置
 	private float	y		=	300;
-	private ArrayList<Life> life,lifeRed;
+	private ArrayList<Life> life,lifeRed,lifeBlue;
 
 	public Base(){	//コンストラクタ
 		life = new ArrayList<Life>();
 		lifeRed = new ArrayList<Life>();
+		lifeBlue = new ArrayList<Life>();
 		createLifeSet(numberOfLife,numberOfRed);
 	}
 
@@ -46,6 +48,9 @@ public class Base {
 			for(Life lr : lifeRed){
 				lr.renderLife();
 			}
+			for(Life lb : lifeBlue){
+				lb.renderLife();
+			}
 
 			Display.update();	//オンスクリーンに反映
 			Display.sync(60);	//FPSを60に固定
@@ -62,11 +67,15 @@ public class Base {
 	public void createLifeSet(int numberOfLife,int numberOfRed){
 		int m = numberOfLife;
 		int n = numberOfRed;
+		int k = numberOfBlue;
 		for(int i=0; i<m; i++){
 			life.add(new Life(x,y));
 		}
 		for(int i=0; i<n; i++){
 			lifeRed.add(new LifeRed(x,y));
+		}
+		for(int i=0; i<k; i++){
+			lifeBlue.add(new LifeBlue(x,y));
 		}
 	}
 }

@@ -6,6 +6,9 @@ public class LifeRed extends Life{
 
 	public LifeRed(float x, float y){	//コンストラクタ
 		super(x,y);
+		super.freq 	= 220;
+		super.velocity = 0.3f;
+		super.side	=	8/2;
 	}
 	@Override
 	public void setLifeColor(){

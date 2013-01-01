@@ -5,9 +5,10 @@ import org.lwjgl.opengl.GL11;
 
 public class Life {
 
-	static final int FREQ = 150;
-	public float	x,y;
-	private float	velocity = 0.05f;
+	protected	int freq = 150;
+	protected	float	velocity = 0.05f;
+	protected	int	side = 10/2;
+	private		float	x,y;
 	private int		direction;
 	private long	lastFrameTime;
 	private long	lastTime;
@@ -25,7 +26,6 @@ public class Life {
 
 		setLifeColor();
 
-		int side = 10/2;
 		//GL11.glPushMatrix();
 			GL11.glBegin(GL11.GL_QUADS);
 				GL11.glVertex2f(x-side, y-side);
@@ -43,6 +43,7 @@ public class Life {
 	//ライフの向かう方向（1,2,3,4,5,6,7,8の8方向。0,9-14は移動しない）
 	public void judgeDirection(){
 		direction = (int)(15*Math.random());
+
 	}
 	//移動（Baseクラスからデルタ時間を取得）
 	public void updateLife(int delta){
@@ -80,9 +81,9 @@ public class Life {
 	public void renderLife(){
 		int delta = getDelta();
 
-		if((getTime() - lastTime) > FREQ){	//FREQミリ秒経ったら
+		if((getTime() - lastTime) > freq){	//freqミリ秒経ったら
 			judgeDirection();				//方向を決めて
-			lastTime += FREQ;				//FREQミリ秒経ったことを記録する
+			lastTime += freq;				//freqミリ秒経ったことを記録する
 		}
 		updateLife(delta);					//ライフの移動
 		render();							//移動の描画
