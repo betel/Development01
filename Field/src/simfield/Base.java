@@ -14,8 +14,8 @@ public class Base {
 	static int		numberOfLife	= 30;
 	static int	 	numberOfRed		= 20;
 	static int		numberOfBlue	= 5;
-	public float	x		=	400;		//オブジェクトの初期位置
-	public float	y		=	300;
+	private float	x		=	400;		//オブジェクトの初期位置
+	private float	y		=	300;
 	//private Life life,lifeRed,lifeBlue;
 	private ArrayList<Life> life,lifeRed,lifeBlue;
 	private LifeSet lifeSet,lifeRedSet,lifeBlueSet;
@@ -86,10 +86,10 @@ public class Base {
 			life.add(new Life(x,y));
 		}
 		for(int i=0; i<numberOfRed; i++){
-			lifeRed.add(new Life(x,y));
+			lifeRed.add(new LifeRed(x,y));
 		}
 		for(int i=0; i<numberOfBlue; i++){
-			lifeBlue.add(new Life(x,y));
+			lifeBlue.add(new LifeBlue(x,y));
 		}
 	}
 }
