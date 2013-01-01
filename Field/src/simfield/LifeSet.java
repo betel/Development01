@@ -11,12 +11,15 @@ public class LifeSet {
 		initLifeSet(life,numberOfLife);
 	}
 
-	public void initLifeSet(Life life,int numberOfLife){
+	private void initLifeSet(Life life,int numberOfLife){
 		aSetOfLife.clear();
 		int n = numberOfLife;
 		for(int i=0; i<n; i++){
-			life = new Life(i,100);
+			life = new Life(i*3 + 200,300);
 			aSetOfLife.add(life);
 		}
+	}
+	public ArrayList<Life> getArray(){
+		return aSetOfLife;
 	}
 }
