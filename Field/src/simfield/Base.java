@@ -16,6 +16,7 @@ public class Base {
 	static int		numberOfBlue	= 5;
 	private float	x		=	400;		//オブジェクトの初期位置
 	private float	y		=	300;
+	public Status status;
 	//private Life life,lifeRed,lifeBlue;
 	private ArrayList<Life> life,lifeRed,lifeBlue;
 	private LifeSet lifeSet,lifeRedSet,lifeBlueSet;
@@ -29,6 +30,7 @@ public class Base {
 		life = new ArrayList<Life>();
 		lifeRed = new ArrayList<Life>();
 		lifeBlue = new ArrayList<Life>();
+		status = new Status();
 		createLifeSet(numberOfLife,numberOfRed,numberOfBlue);
 	}
 
@@ -68,7 +70,7 @@ public class Base {
 			for(Life lb: lifeBlue){
 				lb.renderLife();
 			}
-
+			status.updateFPS();
 			Display.update();	//オンスクリーンに反映
 			Display.sync(60);	//FPSを60に固定
 		}
