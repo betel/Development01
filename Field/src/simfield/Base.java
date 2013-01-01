@@ -11,9 +11,9 @@ public class Base {
 
 	static final int WIDTH	=	800;	//ウィンドウのサイズ
 	static final int HEIGHT	=	600;
-	private int		numberOfLife	= 20;
-	private int 	numberOfRed		= 10;
-	private int		numberOfBlue	= 3;
+	static int		numberOfLife	= 30;
+	static int	 	numberOfRed		= 20;
+	static int		numberOfBlue	= 5;
 	private float	x		=	400;		//オブジェクトの初期位置
 	private float	y		=	300;
 	private ArrayList<Life> life,lifeRed,lifeBlue;
@@ -22,7 +22,7 @@ public class Base {
 		life = new ArrayList<Life>();
 		lifeRed = new ArrayList<Life>();
 		lifeBlue = new ArrayList<Life>();
-		createLifeSet(numberOfLife,numberOfRed);
+		createLifeSet(numberOfLife,numberOfRed,numberOfBlue);
 	}
 
 	public void start(){
@@ -64,7 +64,7 @@ public class Base {
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	}
 	//指定された個数分だけライフを生成してArrayListに追加
-	public void createLifeSet(int numberOfLife,int numberOfRed){
+	public void createLifeSet(int numberOfLife,int numberOfRed,int numberOfBlue){
 		int m = numberOfLife;
 		int n = numberOfRed;
 		int k = numberOfBlue;
