@@ -79,7 +79,7 @@ public class LoadingImage_notes {
 	 * イメージを貼り付ける「四角形の板」を描いてテクスチャを貼る
 	 */
 	public void render(){
-		Color.white.bind();
+		Color.white.bind();		//板にデフォルトの色をセットする
 		texture.bind();			//GL11.glBind(texture.getTextureID())でも可
 
 		glBegin(GL_QUADS);		//四角形を描く。
