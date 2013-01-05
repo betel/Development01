@@ -43,6 +43,7 @@ public class Base{
 
 		//メインループ
 		while(!Display.isCloseRequested()){
+
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 			/**
 			for(Life l : lifeSet.getArray()){
@@ -65,7 +66,8 @@ public class Base{
 				lb.renderLife();
 			}
 
-			drawTTF.render(10, 10, fpsInt.getFPSString(), Color.yellow);
+			drawTTF.render(10, 10, fpsInt.getFPSString(), Color.yellow);	//FPSの描画
+
 			Display.update();	//オンスクリーンに反映
 			Display.sync(100);	//FPSを60に固定
 		}
@@ -89,16 +91,16 @@ public class Base{
 			e.printStackTrace();
 			System.exit(0);
 		}
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glShadeModel(GL11.GL_SMOOTH);
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
-		GL11.glDisable(GL11.GL_LIGHTING);
+		//GL11.glEnable(GL11.GL_TEXTURE_2D);
+		//GL11.glShadeModel(GL11.GL_SMOOTH);
+		//GL11.glDisable(GL11.GL_DEPTH_TEST);
+		//GL11.glDisable(GL11.GL_LIGHTING);
 
-		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		//GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-		GL11.glClearDepth(1);
+		//GL11.glClearDepth(1);
 
-		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_BLEND);		//これを消すとライフが表示されるがFPSは塗りつぶされる
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
 		GL11.glViewport(0, 0, width, height);
