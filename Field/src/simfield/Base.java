@@ -7,7 +7,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
-public class Base implements Runnable{
+public class Base{
 
 	static final int WIDTH	=	800;	//ウィンドウのサイズ
 	static final int HEIGHT	=	600;
@@ -34,18 +34,10 @@ public class Base implements Runnable{
 		createLifeSet(numberOfLife,numberOfRed,numberOfBlue);
 	}
 
-	public void run(){
-		//ウィンドウの生成
-		try{
-			Display.setDisplayMode(new DisplayMode(WIDTH,HEIGHT));
-			//Display.setTitle("SimField");
-			Display.create();
-		}catch(LWJGLException e){
-			e.printStackTrace();
-			System.exit(0);
-		}
+	public void start(){
 
-		initGL();
+		//init();
+		initGL(WIDTH,HEIGHT);
 
 		//メインループ
 		while(!Display.isCloseRequested()){
@@ -72,17 +64,51 @@ public class Base implements Runnable{
 			}
 			status.updateFPS();
 			Display.update();	//オンスクリーンに反映
-			Display.sync(60);	//FPSを60に固定
+			Display.sync(100);	//FPSを60に固定
 		}
+		Display.destroy();
 	}
-	//OpenGLの初期化
-	void initGL(){
+	/**初期化
+	public void init(){
+
+	}
+	*/
+
+	//OpenGL関係の初期化
+	void initGL(int width, int height){
+		//ウィンドウの生成
+		try{
+			Display.setDisplayMode(new DisplayMode(width,height));
+			Display.setTitle("SimField");
+			Display.create();
+		}catch(LWJGLException e){
+			e.printStackTrace();
+			System.exit(0);
+		}
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glShadeModel(GL11.GL_SMOOTH);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		GL11.glDisable(GL11.GL_LIGHTING);
+
+		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+		GL11.glClearDepth(1);
+
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+		GL11.glViewport(0, 0, width, height);
+		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, 800, 0, 600, 1, -1);
+		GL11.glOrtho(0, width, 0, height, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	}
+
 	//指定された分だけライフを生成する
+	/*
+	 * これは別のクラスで行ったほうがいいかも
+	 */
 	public void createLifeSet(int numberOfLife,int numberOfRed,int numberOfBlue){
 		for(int i=0; i<numberOfLife; i++){
 			life.add(new Life(x,y));
