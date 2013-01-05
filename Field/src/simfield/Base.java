@@ -6,6 +6,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
 
 public class Base{
 
@@ -16,8 +17,9 @@ public class Base{
 	static int		numberOfBlue	= 5;
 	private float	x		=	400;		//オブジェクトの初期位置
 	private float	y		=	300;
-	public Status status;
-	DrawTTF draw;
+	private Draw	draw;
+	private CalcFPS fpsInt;
+
 	//private Life life,lifeRed,lifeBlue;
 	private ArrayList<Life> life,lifeRed,lifeBlue;
 	private LifeSet lifeSet,lifeRedSet,lifeBlueSet;
@@ -36,8 +38,8 @@ public class Base{
 
 	public void start(){
 
-		init();		//もろもろ初期化
-		initGL(WIDTH,HEIGHT);
+		initGL(WIDTH,HEIGHT);	//こっちを先に実行する。
+		init();					//もろもろ初期化
 
 		//メインループ
 		while(!Display.isCloseRequested()){
@@ -62,7 +64,8 @@ public class Base{
 			for(Life lb: lifeBlue){
 				lb.renderLife();
 			}
-			status.updateFPS();
+
+			draw.render(10, 10, fpsInt.getFPSString(), Color.yellow);
 			Display.update();	//オンスクリーンに反映
 			Display.sync(100);	//FPSを60に固定
 		}
@@ -70,8 +73,8 @@ public class Base{
 	}
 
 	public void init(){
-		status = new Status();
-		status.initStatus();
+		draw	= new Draw();
+		fpsInt	= new CalcFPS();
 	}
 
 
@@ -102,7 +105,7 @@ public class Base{
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, width, 0, height, 1, -1);
+		GL11.glOrtho(0, width, height, 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	}
 
