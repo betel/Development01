@@ -17,6 +17,7 @@ public class Base{
 	private float	x		=	400;		//オブジェクトの初期位置
 	private float	y		=	300;
 	public Status status;
+	DrawTTF draw;
 	//private Life life,lifeRed,lifeBlue;
 	private ArrayList<Life> life,lifeRed,lifeBlue;
 	private LifeSet lifeSet,lifeRedSet,lifeBlueSet;
@@ -30,13 +31,12 @@ public class Base{
 		life = new ArrayList<Life>();
 		lifeRed = new ArrayList<Life>();
 		lifeBlue = new ArrayList<Life>();
-		status = new Status();
 		createLifeSet(numberOfLife,numberOfRed,numberOfBlue);
 	}
 
 	public void start(){
 
-		//init();
+		init();		//もろもろ初期化
 		initGL(WIDTH,HEIGHT);
 
 		//メインループ
@@ -68,11 +68,12 @@ public class Base{
 		}
 		Display.destroy();
 	}
-	/**初期化
-	public void init(){
 
+	public void init(){
+		status = new Status();
+		status.initStatus();
 	}
-	*/
+
 
 	//OpenGL関係の初期化
 	void initGL(int width, int height){

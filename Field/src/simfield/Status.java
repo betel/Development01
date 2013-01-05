@@ -1,5 +1,7 @@
 package simfield;
 
+
+
 import org.lwjgl.Sys;
 import org.newdawn.slick.Color;
 
@@ -7,11 +9,13 @@ public class Status {
 
 	public	int		fps;
 	private long	lastFPS;
-	DrawTTF ttf;
+	DrawTTF draw;
+	String str;
 
-	public Status(){		//コンストラクタ
+	public void initStatus(){
 		lastFPS = getTime();
-		ttf = new DrawTTF();
+		draw = new DrawTTF();
+		draw.initResource();
 	}
 
 	public long getTime(){
@@ -19,8 +23,9 @@ public class Status {
 	}
 	public void updateFPS(){
 		if(getTime() - lastFPS > 1000){
-			String str = "FPS: " + Integer.toString(fps);
-			ttf.drawStr(100, 100, str, Color.green);
+			str = "FPS: " + Integer.toString(fps);
+			draw.renderStr(100, 100, str, Color.green);
+
 			fps = 0;
 			lastFPS += 1000;
 		}
