@@ -17,7 +17,7 @@ public class Base{
 	static int		numberOfBlue	= 5;
 	private float	x		=	400;		//オブジェクトの初期位置
 	private float	y		=	300;
-	private Draw	draw;
+	private Draw	drawTTF;
 	private CalcFPS fpsInt;
 
 	//private Life life,lifeRed,lifeBlue;
@@ -65,7 +65,7 @@ public class Base{
 				lb.renderLife();
 			}
 
-			draw.render(10, 10, fpsInt.getFPSString(), Color.yellow);
+			drawTTF.render(10, 10, fpsInt.getFPSString(), Color.yellow);
 			Display.update();	//オンスクリーンに反映
 			Display.sync(100);	//FPSを60に固定
 		}
@@ -73,7 +73,7 @@ public class Base{
 	}
 
 	public void init(){
-		draw	= new Draw();
+		drawTTF	= new Draw();
 		fpsInt	= new CalcFPS();
 	}
 
