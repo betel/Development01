@@ -5,6 +5,7 @@ import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.util.ResourceLoader;
@@ -14,13 +15,13 @@ import org.newdawn.slick.util.ResourceLoader;
  * Colorクラスをawt,lwjgl,slic2dのどれにするかでバグが出るかも
  * InputStreamのクラスもチェック。
  */
-public class Draw {
+public class DrawTTF {
 	private TrueTypeFont font;
 	private boolean antiAlias = true;
 	Color color = Color.green;	//色は初期設定で緑とする
 
-	public Draw(){
-		//initGL();
+	public DrawTTF(){
+		initGL();
 		initDraw();
 	}
 
@@ -51,20 +52,19 @@ public class Draw {
 			e.printStackTrace();
 		}
 	}
-	/*
+
 	public void initGL(){
+		/*
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glShadeModel(GL11.GL_SMOOTH);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDisable(GL11.GL_LIGHTING);
 
-		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
 		GL11.glClearDepth(1);
-
+		*/
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_COLOR);
 
 	}
-	*/
+
 }

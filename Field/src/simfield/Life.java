@@ -26,19 +26,21 @@ public class Life {
 
 		setLifeColor();
 
-		//GL11.glPushMatrix();
+		//GL11.glEnable(GL11.GL_BLEND);
+		//GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glPushMatrix();
 			GL11.glBegin(GL11.GL_QUADS);
 				GL11.glVertex2f(x-side, y-side);
 				GL11.glVertex2f(x+side, y-side);
 				GL11.glVertex2f(x+side, y+side);
 				GL11.glVertex2f(x-side, y+side);
 			GL11.glEnd();
-		//GL11.glPopMatrix();
+		GL11.glPopMatrix();
 
 	}
 	//ライフの色を決める
 	public void setLifeColor(){
-		GL11.glColor4f(0.1f, 0.8f, 0.1f, 0.9f);
+		GL11.glColor4f(0.1f, 0.8f, 0.1f, 1.0f);
 	}
 	//ライフの向かう方向（1,2,3,4,5,6,7,8の8方向。0,9-14は移動しない）
 	public void judgeDirection(){

@@ -16,7 +16,7 @@ public class Base{
 	static int		numberOfBlue	= 5;
 	private float	x		=	400;		//オブジェクトの初期位置
 	private float	y		=	300;
-	private Draw	drawTTF;
+	private DrawTTF	drawTTF;
 	private CalcFPS fpsInt;
 
 	//private Life life,lifeRed,lifeBlue;
@@ -55,7 +55,7 @@ public class Base{
 				lb.renderLife();
 			}
 			**/
-			drawTTF.setColor(0.8f, 0.8f, 0.5f, 0.5f);		//FPS表示の色の設定
+			drawTTF.setColor(0.8f, 0.8f, 0.5f, 1.0f);		//FPS表示の色の設定
 			drawTTF.render(10, 10, fpsInt.getFPSString());	//FPSの描画
 
 			for(Life l : life){
@@ -75,7 +75,7 @@ public class Base{
 	}
 
 	public void init(){
-		drawTTF	= new Draw();
+		drawTTF	= new DrawTTF();
 		fpsInt	= new CalcFPS();
 	}
 
@@ -91,19 +91,21 @@ public class Base{
 			e.printStackTrace();
 			System.exit(0);
 		}
+
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glShadeModel(GL11.GL_SMOOTH);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDisable(GL11.GL_LIGHTING);
 
-		GL11.glClearColor(0.1f, 0.2f, 0.1f, 0.1f);
+		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.5f);	//背景色
 
 		GL11.glClearDepth(1);
 
-		GL11.glEnable(GL11.GL_BLEND);		//これを消すとライフが表示されるがFPSは塗りつぶされる
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		//GL11.glEnable(GL11.GL_BLEND);		//これを消すとライフが表示されるがFPSは塗りつぶされる
+		//GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
 		GL11.glViewport(0, 0, width, height);
+
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
