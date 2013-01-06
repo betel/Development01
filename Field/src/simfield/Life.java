@@ -38,7 +38,7 @@ public class Life {
 	}
 	//ライフの色を決める
 	public void setLifeColor(){
-		GL11.glColor3f(0.1f, 0.8f, 0.1f);
+		GL11.glColor4f(0.1f, 0.8f, 0.1f, 0.9f);
 	}
 	//ライフの向かう方向（1,2,3,4,5,6,7,8の8方向。0,9-14は移動しない）
 	public void judgeDirection(){

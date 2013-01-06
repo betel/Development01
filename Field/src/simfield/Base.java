@@ -6,7 +6,6 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.Color;
 
 public class Base{
 
@@ -56,6 +55,9 @@ public class Base{
 				lb.renderLife();
 			}
 			**/
+			drawTTF.setColor(0.8f, 0.8f, 0.5f, 0.5f);		//FPS表示の色の設定
+			drawTTF.render(10, 10, fpsInt.getFPSString());	//FPSの描画
+
 			for(Life l : life){
 				l.renderLife();
 			}
@@ -65,8 +67,6 @@ public class Base{
 			for(Life lb: lifeBlue){
 				lb.renderLife();
 			}
-
-			drawTTF.render(10, 10, fpsInt.getFPSString(), Color.yellow);	//FPSの描画
 
 			Display.update();	//オンスクリーンに反映
 			Display.sync(100);	//FPSを60に固定
@@ -91,14 +91,14 @@ public class Base{
 			e.printStackTrace();
 			System.exit(0);
 		}
-		//GL11.glEnable(GL11.GL_TEXTURE_2D);
-		//GL11.glShadeModel(GL11.GL_SMOOTH);
-		//GL11.glDisable(GL11.GL_DEPTH_TEST);
-		//GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glShadeModel(GL11.GL_SMOOTH);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		GL11.glDisable(GL11.GL_LIGHTING);
 
-		//GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		GL11.glClearColor(0.1f, 0.2f, 0.1f, 0.1f);
 
-		//GL11.glClearDepth(1);
+		GL11.glClearDepth(1);
 
 		GL11.glEnable(GL11.GL_BLEND);		//これを消すとライフが表示されるがFPSは塗りつぶされる
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

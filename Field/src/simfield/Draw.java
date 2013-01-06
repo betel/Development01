@@ -17,6 +17,7 @@ import org.newdawn.slick.util.ResourceLoader;
 public class Draw {
 	private TrueTypeFont font;
 	private boolean antiAlias = true;
+	Color color = Color.green;	//色は初期設定で緑とする
 
 	public Draw(){
 		//initGL();
@@ -27,7 +28,14 @@ public class Draw {
 		Color.white.bind();
 		font.drawString(x, y, str, c);
 	}
-	
+	public void render(int x, int y, String str){	//setColor()で色を指定した時用
+		Color.white.bind();
+		font.drawString(x, y, str,color);
+	}
+	public void setColor(float r, float b, float g, float a){
+		color = new Color(r,b,g,a);
+	}
+
 	public void initDraw(){
 		InputStream input = ResourceLoader.getResourceAsStream("res/UbuntuMono.ttf");
 
